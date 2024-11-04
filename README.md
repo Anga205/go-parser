@@ -61,7 +61,3 @@ Finished checks in Xms
 --------------------------------
 Code is invalid.
 ```
-
-## License
-
-This project is licensed under the MIT License.

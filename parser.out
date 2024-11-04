@@ -1,0 +1,675 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement_list statement
+Rule 4     statement -> if_statement
+Rule 5     statement -> while_statement
+Rule 6     statement -> for_statement
+Rule 7     statement -> OTHER
+Rule 8     if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+Rule 9     if_statement -> IF expression LBRACE statement_list RBRACE
+Rule 10    while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+Rule 11    while_statement -> WHILE expression LBRACE statement_list RBRACE
+Rule 12    for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+Rule 13    expression -> OTHER
+Rule 14    expression -> expression OTHER
+
+Terminals, with rules where they appear
+
+FOR                  : 12
+IF                   : 8 9
+LBRACE               : 8 9 10 11 12
+LPAREN               : 8 10 12
+OTHER                : 7 13 14
+RBRACE               : 8 9 10 11 12
+RPAREN               : 8 10 12
+SEMICOLON            : 12 12
+WHILE                : 10 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 8 9 10 11 12 12 12 14
+for_statement        : 6
+if_statement         : 4
+program              : 0
+statement            : 2 3
+statement_list       : 1 3 8 9 10 11 12
+while_statement      : 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement                      shift and go to state 11
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 3
+
+    (2) statement_list -> statement .
+
+    OTHER           reduce using rule 2 (statement_list -> statement .)
+    IF              reduce using rule 2 (statement_list -> statement .)
+    WHILE           reduce using rule 2 (statement_list -> statement .)
+    FOR             reduce using rule 2 (statement_list -> statement .)
+    $end            reduce using rule 2 (statement_list -> statement .)
+    RBRACE          reduce using rule 2 (statement_list -> statement .)
+
+
+state 4
+
+    (4) statement -> if_statement .
+
+    OTHER           reduce using rule 4 (statement -> if_statement .)
+    IF              reduce using rule 4 (statement -> if_statement .)
+    WHILE           reduce using rule 4 (statement -> if_statement .)
+    FOR             reduce using rule 4 (statement -> if_statement .)
+    $end            reduce using rule 4 (statement -> if_statement .)
+    RBRACE          reduce using rule 4 (statement -> if_statement .)
+
+
+state 5
+
+    (5) statement -> while_statement .
+
+    OTHER           reduce using rule 5 (statement -> while_statement .)
+    IF              reduce using rule 5 (statement -> while_statement .)
+    WHILE           reduce using rule 5 (statement -> while_statement .)
+    FOR             reduce using rule 5 (statement -> while_statement .)
+    $end            reduce using rule 5 (statement -> while_statement .)
+    RBRACE          reduce using rule 5 (statement -> while_statement .)
+
+
+state 6
+
+    (6) statement -> for_statement .
+
+    OTHER           reduce using rule 6 (statement -> for_statement .)
+    IF              reduce using rule 6 (statement -> for_statement .)
+    WHILE           reduce using rule 6 (statement -> for_statement .)
+    FOR             reduce using rule 6 (statement -> for_statement .)
+    $end            reduce using rule 6 (statement -> for_statement .)
+    RBRACE          reduce using rule 6 (statement -> for_statement .)
+
+
+state 7
+
+    (7) statement -> OTHER .
+
+    OTHER           reduce using rule 7 (statement -> OTHER .)
+    IF              reduce using rule 7 (statement -> OTHER .)
+    WHILE           reduce using rule 7 (statement -> OTHER .)
+    FOR             reduce using rule 7 (statement -> OTHER .)
+    $end            reduce using rule 7 (statement -> OTHER .)
+    RBRACE          reduce using rule 7 (statement -> OTHER .)
+
+
+state 8
+
+    (8) if_statement -> IF . LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> IF . expression LBRACE statement_list RBRACE
+    (13) expression -> . OTHER
+    (14) expression -> . expression OTHER
+
+    LPAREN          shift and go to state 12
+    OTHER           shift and go to state 14
+
+    expression                     shift and go to state 13
+
+state 9
+
+    (10) while_statement -> WHILE . LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> WHILE . expression LBRACE statement_list RBRACE
+    (13) expression -> . OTHER
+    (14) expression -> . expression OTHER
+
+    LPAREN          shift and go to state 15
+    OTHER           shift and go to state 14
+
+    expression                     shift and go to state 16
+
+state 10
+
+    (12) for_statement -> FOR . LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    LPAREN          shift and go to state 17
+
+
+state 11
+
+    (3) statement_list -> statement_list statement .
+
+    OTHER           reduce using rule 3 (statement_list -> statement_list statement .)
+    IF              reduce using rule 3 (statement_list -> statement_list statement .)
+    WHILE           reduce using rule 3 (statement_list -> statement_list statement .)
+    FOR             reduce using rule 3 (statement_list -> statement_list statement .)
+    $end            reduce using rule 3 (statement_list -> statement_list statement .)
+    RBRACE          reduce using rule 3 (statement_list -> statement_list statement .)
+
+
+state 12
+
+    (8) if_statement -> IF LPAREN . expression RPAREN LBRACE statement_list RBRACE
+    (13) expression -> . OTHER
+    (14) expression -> . expression OTHER
+
+    OTHER           shift and go to state 14
+
+    expression                     shift and go to state 18
+
+state 13
+
+    (9) if_statement -> IF expression . LBRACE statement_list RBRACE
+    (14) expression -> expression . OTHER
+
+    LBRACE          shift and go to state 19
+    OTHER           shift and go to state 20
+
+
+state 14
+
+    (13) expression -> OTHER .
+
+    LBRACE          reduce using rule 13 (expression -> OTHER .)
+    OTHER           reduce using rule 13 (expression -> OTHER .)
+    RPAREN          reduce using rule 13 (expression -> OTHER .)
+    SEMICOLON       reduce using rule 13 (expression -> OTHER .)
+
+
+state 15
+
+    (10) while_statement -> WHILE LPAREN . expression RPAREN LBRACE statement_list RBRACE
+    (13) expression -> . OTHER
+    (14) expression -> . expression OTHER
+
+    OTHER           shift and go to state 14
+
+    expression                     shift and go to state 21
+
+state 16
+
+    (11) while_statement -> WHILE expression . LBRACE statement_list RBRACE
+    (14) expression -> expression . OTHER
+
+    LBRACE          shift and go to state 22
+    OTHER           shift and go to state 20
+
+
+state 17
+
+    (12) for_statement -> FOR LPAREN . expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+    (13) expression -> . OTHER
+    (14) expression -> . expression OTHER
+
+    OTHER           shift and go to state 14
+
+    expression                     shift and go to state 23
+
+state 18
+
+    (8) if_statement -> IF LPAREN expression . RPAREN LBRACE statement_list RBRACE
+    (14) expression -> expression . OTHER
+
+    RPAREN          shift and go to state 24
+    OTHER           shift and go to state 20
+
+
+state 19
+
+    (9) if_statement -> IF expression LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement_list                 shift and go to state 25
+    statement                      shift and go to state 3
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 20
+
+    (14) expression -> expression OTHER .
+
+    LBRACE          reduce using rule 14 (expression -> expression OTHER .)
+    OTHER           reduce using rule 14 (expression -> expression OTHER .)
+    RPAREN          reduce using rule 14 (expression -> expression OTHER .)
+    SEMICOLON       reduce using rule 14 (expression -> expression OTHER .)
+
+
+state 21
+
+    (10) while_statement -> WHILE LPAREN expression . RPAREN LBRACE statement_list RBRACE
+    (14) expression -> expression . OTHER
+
+    RPAREN          shift and go to state 26
+    OTHER           shift and go to state 20
+
+
+state 22
+
+    (11) while_statement -> WHILE expression LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement_list                 shift and go to state 27
+    statement                      shift and go to state 3
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 23
+
+    (12) for_statement -> FOR LPAREN expression . SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+    (14) expression -> expression . OTHER
+
+    SEMICOLON       shift and go to state 28
+    OTHER           shift and go to state 20
+
+
+state 24
+
+    (8) if_statement -> IF LPAREN expression RPAREN . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 29
+
+
+state 25
+
+    (9) if_statement -> IF expression LBRACE statement_list . RBRACE
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    RBRACE          shift and go to state 30
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement                      shift and go to state 11
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 26
+
+    (10) while_statement -> WHILE LPAREN expression RPAREN . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 31
+
+
+state 27
+
+    (11) while_statement -> WHILE expression LBRACE statement_list . RBRACE
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    RBRACE          shift and go to state 32
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement                      shift and go to state 11
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 28
+
+    (12) for_statement -> FOR LPAREN expression SEMICOLON . expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+    (13) expression -> . OTHER
+    (14) expression -> . expression OTHER
+
+    OTHER           shift and go to state 14
+
+    expression                     shift and go to state 33
+
+state 29
+
+    (8) if_statement -> IF LPAREN expression RPAREN LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement_list                 shift and go to state 34
+    statement                      shift and go to state 3
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 30
+
+    (9) if_statement -> IF expression LBRACE statement_list RBRACE .
+
+    OTHER           reduce using rule 9 (if_statement -> IF expression LBRACE statement_list RBRACE .)
+    IF              reduce using rule 9 (if_statement -> IF expression LBRACE statement_list RBRACE .)
+    WHILE           reduce using rule 9 (if_statement -> IF expression LBRACE statement_list RBRACE .)
+    FOR             reduce using rule 9 (if_statement -> IF expression LBRACE statement_list RBRACE .)
+    $end            reduce using rule 9 (if_statement -> IF expression LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 9 (if_statement -> IF expression LBRACE statement_list RBRACE .)
+
+
+state 31
+
+    (10) while_statement -> WHILE LPAREN expression RPAREN LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement_list                 shift and go to state 35
+    statement                      shift and go to state 3
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 32
+
+    (11) while_statement -> WHILE expression LBRACE statement_list RBRACE .
+
+    OTHER           reduce using rule 11 (while_statement -> WHILE expression LBRACE statement_list RBRACE .)
+    IF              reduce using rule 11 (while_statement -> WHILE expression LBRACE statement_list RBRACE .)
+    WHILE           reduce using rule 11 (while_statement -> WHILE expression LBRACE statement_list RBRACE .)
+    FOR             reduce using rule 11 (while_statement -> WHILE expression LBRACE statement_list RBRACE .)
+    $end            reduce using rule 11 (while_statement -> WHILE expression LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 11 (while_statement -> WHILE expression LBRACE statement_list RBRACE .)
+
+
+state 33
+
+    (12) for_statement -> FOR LPAREN expression SEMICOLON expression . SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+    (14) expression -> expression . OTHER
+
+    SEMICOLON       shift and go to state 36
+    OTHER           shift and go to state 20
+
+
+state 34
+
+    (8) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list . RBRACE
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    RBRACE          shift and go to state 37
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement                      shift and go to state 11
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 35
+
+    (10) while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list . RBRACE
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    RBRACE          shift and go to state 38
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement                      shift and go to state 11
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 36
+
+    (12) for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON . expression RPAREN LBRACE statement_list RBRACE
+    (13) expression -> . OTHER
+    (14) expression -> . expression OTHER
+
+    OTHER           shift and go to state 14
+
+    expression                     shift and go to state 39
+
+state 37
+
+    (8) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .
+
+    OTHER           reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    IF              reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    WHILE           reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    FOR             reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    $end            reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 8 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+
+
+state 38
+
+    (10) while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE .
+
+    OTHER           reduce using rule 10 (while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    IF              reduce using rule 10 (while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    WHILE           reduce using rule 10 (while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    FOR             reduce using rule 10 (while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    $end            reduce using rule 10 (while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 10 (while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE .)
+
+
+state 39
+
+    (12) for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression . RPAREN LBRACE statement_list RBRACE
+    (14) expression -> expression . OTHER
+
+    RPAREN          shift and go to state 40
+    OTHER           shift and go to state 20
+
+
+state 40
+
+    (12) for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 41
+
+
+state 41
+
+    (12) for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement_list                 shift and go to state 42
+    statement                      shift and go to state 3
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 42
+
+    (12) for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list . RBRACE
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . if_statement
+    (5) statement -> . while_statement
+    (6) statement -> . for_statement
+    (7) statement -> . OTHER
+    (8) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (9) if_statement -> . IF expression LBRACE statement_list RBRACE
+    (10) while_statement -> . WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (11) while_statement -> . WHILE expression LBRACE statement_list RBRACE
+    (12) for_statement -> . FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE
+
+    RBRACE          shift and go to state 43
+    OTHER           shift and go to state 7
+    IF              shift and go to state 8
+    WHILE           shift and go to state 9
+    FOR             shift and go to state 10
+
+    statement                      shift and go to state 11
+    if_statement                   shift and go to state 4
+    while_statement                shift and go to state 5
+    for_statement                  shift and go to state 6
+
+state 43
+
+    (12) for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE .
+
+    OTHER           reduce using rule 12 (for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE .)
+    IF              reduce using rule 12 (for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE .)
+    WHILE           reduce using rule 12 (for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE .)
+    FOR             reduce using rule 12 (for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE .)
+    $end            reduce using rule 12 (for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 12 (for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE .)
+

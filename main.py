@@ -69,73 +69,69 @@ def check_for_statements(code):
                 return False
     return True
 
-def main():
-    with open('sample.txt', 'r') as file:
-        code = file.read()
+with open('sample.txt', 'r') as file:
+    code = file.read()
 
-    brace_match = False
-    if_statements_correct = False
-    while_statements_correct = False
-    for_statements_correct = False
+brace_match = False
+if_statements_correct = False
+while_statements_correct = False
+for_statements_correct = False
 
-    start = time.time()
+start = time.time()
 
-    def check_braces_thread():
-        nonlocal brace_match
-        brace_match = check_braces(code)
-        if brace_match:
-            print("Braces matched successfully.")
-        else:
-            print("Braces do not match, exiting code.")
+def check_braces_thread():
+    global brace_match
+    brace_match = check_braces(code)
+    if brace_match:
+        print("Braces matched successfully.")
+    else:
+        print("Braces do not match, exiting code.")
 
-    def check_if_statements_thread():
-        nonlocal if_statements_correct
-        if_statements_correct = check_if_statements(code)
-        if if_statements_correct:
-            print("'If' statements are correct.")
-        else:
-            print("'If' statements are incorrect, exiting code.")
+def check_if_statements_thread():
+    global if_statements_correct
+    if_statements_correct = check_if_statements(code)
+    if if_statements_correct:
+        print("'If' statements are correct.")
+    else:
+        print("'If' statements are incorrect, exiting code.")
 
-    def check_while_statements_thread():
-        nonlocal while_statements_correct
-        while_statements_correct = check_while_statements(code)
-        if while_statements_correct:
-            print("'While' statements are correct.")
-        else:
-            print("'While' statements are incorrect, exiting code.")
+def check_while_statements_thread():
+    global while_statements_correct
+    while_statements_correct = check_while_statements(code)
+    if while_statements_correct:
+        print("'While' statements are correct.")
+    else:
+        print("'While' statements are incorrect, exiting code.")
 
-    def check_for_statements_thread():
-        nonlocal for_statements_correct
-        for_statements_correct = check_for_statements(code)
-        if for_statements_correct:
-            print("'For' statements are correct.")
-        else:
-            print("'For' statements are incorrect, exiting code.")
+def check_for_statements_thread():
+    global for_statements_correct
+    for_statements_correct = check_for_statements(code)
+    if for_statements_correct:
+        print("'For' statements are correct.")
+    else:
+        print("'For' statements are incorrect, exiting code.")
 
-    threads = [
-        threading.Thread(target=check_braces_thread),
-        threading.Thread(target=check_if_statements_thread),
-        threading.Thread(target=check_while_statements_thread),
-        threading.Thread(target=check_for_statements_thread)
-    ]
+threads = [
+    threading.Thread(target=check_braces_thread),
+    threading.Thread(target=check_if_statements_thread),
+    threading.Thread(target=check_while_statements_thread),
+    threading.Thread(target=check_for_statements_thread)
+]
 
-    for thread in threads:
-        thread.start()
+for thread in threads:
+    thread.start()
 
-    for thread in threads:
-        thread.join()
+for thread in threads:
+    thread.join()
 
-    if not (brace_match and if_statements_correct and while_statements_correct and for_statements_correct):
-        elapsed = time.time() - start
-        print(f"Finished checks in {elapsed:.2f} seconds")
-        print("--------------------------------")
-        print("Code is invalid.")
-        return
-
+if not (brace_match and if_statements_correct and while_statements_correct and for_statements_correct):
     elapsed = time.time() - start
     print(f"Finished checks in {elapsed:.2f} seconds")
     print("--------------------------------")
-    print("Code is valid.")
+    print("Code is invalid.")
+    exit()
 
-if __name__ == "__main__":
-    main()
+elapsed = time.time() - start
+print(f"Finished checks in {elapsed:.2f} seconds")
+print("--------------------------------")
+print("Code is valid.")

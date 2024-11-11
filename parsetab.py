@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'FOR IF LBRACE LPAREN OTHER RBRACE RPAREN SEMICOLON WHILE\n    program : statement_list\n    \n    statement_list : statement\n                   | statement_list statement\n    \n    statement : if_statement\n              | while_statement\n              | for_statement\n              | OTHER\n    \n    if_statement : IF LPAREN expression RPAREN LBRACE statement_list RBRACE\n                 | IF expression LBRACE statement_list RBRACE\n    \n    while_statement : WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE\n                    | WHILE expression LBRACE statement_list RBRACE\n    \n    for_statement : FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE\n    \n    expression : OTHER\n               | expression OTHER\n    '
+_lr_signature = 'FOR IDENTIFIER IF LBRACE LPAREN RBRACE RPAREN SEMICOLON WHILEstatement : IF LPAREN IDENTIFIER RPAREN LBRACE RBRACEstatement : WHILE LPAREN IDENTIFIER RPAREN LBRACE RBRACEstatement : FOR LPAREN IDENTIFIER SEMICOLON IDENTIFIER SEMICOLON IDENTIFIER RPAREN LBRACE RBRACE'
     
-_lr_action_items = {'OTHER':([0,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,25,27,28,29,30,31,32,33,34,35,36,37,38,39,41,42,43,],[7,7,-2,-4,-5,-6,-7,14,14,-3,14,20,-13,14,20,14,20,7,-14,20,7,20,7,7,14,7,-9,7,-11,20,7,7,14,-8,-10,20,7,7,-12,]),'IF':([0,2,3,4,5,6,7,11,19,22,25,27,29,30,31,32,34,35,37,38,41,42,43,],[8,8,-2,-4,-5,-6,-7,-3,8,8,8,8,8,-9,8,-11,8,8,-8,-10,8,8,-12,]),'WHILE':([0,2,3,4,5,6,7,11,19,22,25,27,29,30,31,32,34,35,37,38,41,42,43,],[9,9,-2,-4,-5,-6,-7,-3,9,9,9,9,9,-9,9,-11,9,9,-8,-10,9,9,-12,]),'FOR':([0,2,3,4,5,6,7,11,19,22,25,27,29,30,31,32,34,35,37,38,41,42,43,],[10,10,-2,-4,-5,-6,-7,-3,10,10,10,10,10,-9,10,-11,10,10,-8,-10,10,10,-12,]),'$end':([1,2,3,4,5,6,7,11,30,32,37,38,43,],[0,-1,-2,-4,-5,-6,-7,-3,-9,-11,-8,-10,-12,]),'RBRACE':([3,4,5,6,7,11,25,27,30,32,34,35,37,38,42,43,],[-2,-4,-5,-6,-7,-3,30,32,-9,-11,37,38,-8,-10,43,-12,]),'LPAREN':([8,9,10,],[12,15,17,]),'LBRACE':([13,14,16,20,24,26,40,],[19,-13,22,-14,29,31,41,]),'RPAREN':([14,18,20,21,39,],[-13,24,-14,26,40,]),'SEMICOLON':([14,20,23,33,],[-13,-14,28,36,]),}
+_lr_action_items = {'IF':([0,],[2,]),'WHILE':([0,],[3,]),'FOR':([0,],[4,]),'$end':([1,17,18,23,],[0,-1,-2,-3,]),'LPAREN':([2,3,4,],[5,6,7,]),'IDENTIFIER':([5,6,7,13,19,],[8,9,10,16,20,]),'RPAREN':([8,9,20,],[11,12,21,]),'SEMICOLON':([10,16,],[13,19,]),'LBRACE':([11,12,21,],[14,15,22,]),'RBRACE':([14,15,22,],[17,18,23,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'statement_list':([0,19,22,29,31,41,],[2,25,27,34,35,42,]),'statement':([0,2,19,22,25,27,29,31,34,35,41,42,],[3,11,3,3,11,11,3,3,11,11,3,11,]),'if_statement':([0,2,19,22,25,27,29,31,34,35,41,42,],[4,4,4,4,4,4,4,4,4,4,4,4,]),'while_statement':([0,2,19,22,25,27,29,31,34,35,41,42,],[5,5,5,5,5,5,5,5,5,5,5,5,]),'for_statement':([0,2,19,22,25,27,29,31,34,35,41,42,],[6,6,6,6,6,6,6,6,6,6,6,6,]),'expression':([8,9,12,15,17,28,36,],[13,16,18,21,23,33,39,]),}
+_lr_goto_items = {'statement':([0,],[1,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,19 +26,8 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> program","S'",1,None,None,None),
-  ('program -> statement_list','program',1,'p_program','main.py',53),
-  ('statement_list -> statement','statement_list',1,'p_statement_list','main.py',59),
-  ('statement_list -> statement_list statement','statement_list',2,'p_statement_list','main.py',60),
-  ('statement -> if_statement','statement',1,'p_statement','main.py',66),
-  ('statement -> while_statement','statement',1,'p_statement','main.py',67),
-  ('statement -> for_statement','statement',1,'p_statement','main.py',68),
-  ('statement -> OTHER','statement',1,'p_statement','main.py',69),
-  ('if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE','if_statement',7,'p_if_statement','main.py',75),
-  ('if_statement -> IF expression LBRACE statement_list RBRACE','if_statement',5,'p_if_statement','main.py',76),
-  ('while_statement -> WHILE LPAREN expression RPAREN LBRACE statement_list RBRACE','while_statement',7,'p_while_statement','main.py',82),
-  ('while_statement -> WHILE expression LBRACE statement_list RBRACE','while_statement',5,'p_while_statement','main.py',83),
-  ('for_statement -> FOR LPAREN expression SEMICOLON expression SEMICOLON expression RPAREN LBRACE statement_list RBRACE','for_statement',11,'p_for_statement','main.py',89),
-  ('expression -> OTHER','expression',1,'p_expression','main.py',95),
-  ('expression -> expression OTHER','expression',2,'p_expression','main.py',96),
+  ("S' -> statement","S'",1,None,None,None),
+  ('statement -> IF LPAREN IDENTIFIER RPAREN LBRACE RBRACE','statement',6,'p_statement_if','parser.py',42),
+  ('statement -> WHILE LPAREN IDENTIFIER RPAREN LBRACE RBRACE','statement',6,'p_statement_while','parser.py',46),
+  ('statement -> FOR LPAREN IDENTIFIER SEMICOLON IDENTIFIER SEMICOLON IDENTIFIER RPAREN LBRACE RBRACE','statement',10,'p_statement_for','parser.py',50),
 ]

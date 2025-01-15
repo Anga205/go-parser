@@ -1,4 +1,4 @@
-# AFLL Miniproject, Go Parser
+# Go Parser (AFLL miniproject)
 
 This Go project contains a parser that checks the syntax of Go code for specific elements such as braces, `if` statements, `while` statements, and `for` statements. The parser reads code from a file named `sample.txt` and validates the syntax based on predefined rules.
 
